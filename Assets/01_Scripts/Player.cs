@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
+    [SerializeField] private float speed = 3f;
+    public float runningSpeed = 12f;
     private float jumpingPower = 16f;
-    private bool isFacingRight = true;
+    [SerializeField] private bool isFacingRight = true;
+    [SerializeField] private bool isRunning = false;
+    public float runTime = 5f; // Tiempo máximo de uso en segundos
+    public float runCooldown = 3f; // Tiempo de recarga en segundos
+    public float runTimer;
+    public float cooldownTimer;
+    private bool canRun = true;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -27,12 +33,15 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+        HandleRunning();
+
         Flip();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        float currentSpeed = isRunning ? runningSpeed : speed;
+        rb.velocity = new Vector2(horizontal * currentSpeed, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -50,4 +59,39 @@ public class Player : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    private void HandleRunning()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canRun)
+        {
+            isRunning = true;
+            runTimer = runTime;
+        }
+
+        if (isRunning)
+        {
+            runTimer -= Time.deltaTime;
+            if (runTimer <= 0)
+            {
+                isRunning = false;
+                canRun = false;
+                cooldownTimer = runCooldown;
+            }
+        }
+
+        if (!canRun)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0)
+            {
+                canRun = true;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+        }
+    }
 }
+
