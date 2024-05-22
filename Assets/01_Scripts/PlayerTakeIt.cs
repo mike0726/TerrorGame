@@ -10,6 +10,7 @@ public class PlayerTakeIt : MonoBehaviour
     public GameObject PlayerItem;
     public Transform teletransportacionDestino;
     public GameObject puerta; 
+    
     void Start()
     {
 

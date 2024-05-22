@@ -11,26 +11,40 @@ public class BarLife : MonoBehaviour
     public Image bar;
     public float life = 100;
     public float timeSpeed;
-    Light2D bateria;
+    public Light2D bateria;
+    private float timer = 0.0f;
+    public float interval = 1.0f;
 
     void Start()
     {
         bateria = GameObject.Find("Bateria").GetComponent<Light2D>(); 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        //limitar la cantidad que posee la barra de vida
+        
+        timer += Time.deltaTime;
+
+       
+        if (timer >= interval)
+        {
+            Bateria();
+         
+            timer = 0.0f;
+        }
+        Debug.Log("Life: " + life);
+        Debug.Log("Bateria Intensity: " + bateria.intensity);
+
+    }
+    void Bateria()
+    {
         life = Mathf.Clamp(life, 0, 100);
 
-        bar.fillAmount = life/100;
+        bar.fillAmount = life / 100;
 
-       if(life > 0)
+        if (life > 0)
         {
-         life -= Time.deltaTime * timeSpeed; 
-         bateria.intensity = life * 0.01f;
-        } 
-        
+           // life -= Time.deltaTime * timeSpeed;
+            bateria.intensity = life * 0.01f;
+        }
     }
 }
