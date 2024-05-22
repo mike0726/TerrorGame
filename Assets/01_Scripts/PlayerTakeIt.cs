@@ -8,22 +8,24 @@ public class PlayerTakeIt : MonoBehaviour
     public bool ItemActivo;
     public bool ConItem;
     public GameObject PlayerItem;
+    public Transform teletransportacionDestino;
+    public GameObject puerta; 
     void Start()
     {
-        
+
     }
 
-   
+
     void Update()
     {
 
-       
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Item"))
         {
-            //Destroy(collision.gameObject);
+            
             collision.gameObject.transform.parent = transform;
             ConItem = true;
             PlayerItem = collision.gameObject;
@@ -42,7 +44,7 @@ public class PlayerTakeIt : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.E) && ItemActivo && ConItem == false)
             {
-              collision.gameObject.GetComponent<InstanciadorItems>().InstanciarObjeto();
+                collision.gameObject.GetComponent<InstanciadorItems>().InstanciarObjeto();
 
             }
             if (Input.GetKeyDown(KeyCode.E) && ItemActivo && ConItem == true)
@@ -51,7 +53,31 @@ public class PlayerTakeIt : MonoBehaviour
                 collision.gameObject.GetComponent<InstanciadorItems>().InstanciarObjeto();
             }
         }
+        if (collision.gameObject.CompareTag("Puerta"))
+        {
+            if (ConItem && Input.GetKeyDown(KeyCode.E))
+            {
+                OpenDoor();
+                TeletransportarJugador();
+            }
+        }
 
 
     }
+    private void OpenDoor()
+    {
+        
+       
+        puerta.SetActive(false);
+    }
+    private void TeletransportarJugador()
+    {
+    
+        transform.position = teletransportacionDestino.position;
+        ConItem = false;
+        Destroy(PlayerItem); 
+    }
 }
+
+
+

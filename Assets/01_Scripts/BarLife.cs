@@ -29,7 +29,7 @@ public class BarLife : MonoBehaviour
        if(life > 0)
         {
          life -= Time.deltaTime * timeSpeed; 
-        bateria.intensity = life * 0.01f;
+         bateria.intensity = life * 0.01f;
         } 
         
     }

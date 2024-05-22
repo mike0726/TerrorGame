@@ -7,6 +7,8 @@ TagManager:
   - ObjetoInteractivo
   - Item
   - Instanciador
+  - Enemy
+  - Puerta
   layers:
   - Default
   - TransparentFX

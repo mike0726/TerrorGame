@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     private float horizontal;
@@ -14,10 +15,20 @@ public class Player : MonoBehaviour
     public float runTimer;
     public float cooldownTimer;
     private bool canRun = true;
+    private int lives = 10;
+    private int maxLives = 10; // Número máximo de vidas del jugador
+    public Image lifeBarImage; // Referencia a la imagen de la barra de vida
+
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+
+
+    void Start()
+    {
+        UpdateLifeBar();
+    }
 
     void Update()
     {
@@ -59,7 +70,34 @@ public class Player : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+    public void TakeDamage()
+    {
+        lives--;
+        UpdateLifeBar();
+        Debug.Log("Vidas restantes: " + lives);
 
+        if (lives <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+        Debug.Log("El jugador ha muerto.");
+        Destroy(gameObject);
+        
+    }
+    private void UpdateLifeBar()
+    {
+        lifeBarImage.fillAmount = (float)lives / maxLives;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage();
+        }
+    }
     private void HandleRunning()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && canRun)
