@@ -17,7 +17,7 @@ public class BarLife : MonoBehaviour
 
     void Start()
     {
-        bateria = GameObject.Find("Bateria").GetComponent<Light2D>(); 
+        //bateria = GameObject.Find("Bateria").GetComponent<Light2D>(); 
     }
     void Update()
     {
