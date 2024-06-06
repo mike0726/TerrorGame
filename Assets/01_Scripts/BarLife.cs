@@ -11,13 +11,14 @@ public class BarLife : MonoBehaviour
     public Image bar;
     public float life = 100;
     public float timeSpeed;
-    public Light2D bateria;
+    [SerializeField]
+     Light2D bateria;
     private float timer = 0.0f;
-    public float interval = 1.0f;
+    public float interval = 0f;
 
     void Start()
     {
-        //bateria = GameObject.Find("Bateria").GetComponent<Light2D>(); 
+        bateria = GameObject.Find("BateriaLuz").GetComponent<Light2D>(); 
     }
     void Update()
     {
@@ -27,7 +28,7 @@ public class BarLife : MonoBehaviour
        
         if (timer >= interval)
         {
-            Bateria();
+            ApagarBateria();
          
             timer = 0.0f;
         }
@@ -35,7 +36,7 @@ public class BarLife : MonoBehaviour
         Debug.Log("Bateria Intensity: " + bateria.intensity);
 
     }
-    void Bateria()
+    public void ApagarBateria()
     {
         life = Mathf.Clamp(life, 0, 100);
 
@@ -43,7 +44,7 @@ public class BarLife : MonoBehaviour
 
         if (life > 0)
         {
-           // life -= Time.deltaTime * timeSpeed;
+           life -= Time.deltaTime * timeSpeed;
             bateria.intensity = life * 0.01f;
         }
     }
