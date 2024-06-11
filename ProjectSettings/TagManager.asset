@@ -9,6 +9,7 @@ TagManager:
   - Instanciador
   - Enemy
   - Puerta
+  - Destroyer
   layers:
   - Default
   - TransparentFX

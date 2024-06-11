@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.UI;
 public class Player : MonoBehaviour
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     private int lives = 10;
     private int maxLives = 10; // Número máximo de vidas del jugador
     public Image lifeBarImage; // Referencia a la imagen de la barra de vida
-
+    public Animator animator;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -28,11 +29,21 @@ public class Player : MonoBehaviour
     void Start()
     {
         UpdateLifeBar();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal != 0)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
+
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -42,8 +53,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }
 
+        }
+        else
+        {
+            animator.SetBool("IsJump", false);
+        }
         HandleRunning();
 
         Flip();
@@ -85,7 +100,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("El jugador ha muerto.");
         Destroy(gameObject);
-        
+
     }
     private void UpdateLifeBar()
     {
@@ -102,8 +117,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && canRun)
         {
+
             isRunning = true;
             runTimer = runTime;
+            animator.SetBool("IsRunning", true);
+
+
         }
 
         if (isRunning)
@@ -111,9 +130,14 @@ public class Player : MonoBehaviour
             runTimer -= Time.deltaTime;
             if (runTimer <= 0)
             {
+                animator.SetBool("IsRunning", false);
                 isRunning = false;
                 canRun = false;
                 cooldownTimer = runCooldown;
+
+
+
+
             }
         }
 
@@ -129,6 +153,15 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             isRunning = false;
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Destroyer"))
+        {
+            //manager.GameOverUI();
+            GetComponent<Player>().enabled = false;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }
