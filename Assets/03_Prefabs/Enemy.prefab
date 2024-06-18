@@ -1282,7 +1282,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   velocidad: 3
   clip: {fileID: 8300000, guid: d194f863f70c83a409228088d23e9dc9, type: 3}
-  minDistance: 2
+  minDistance: 10
   playerDistance: 0
   sprite: {fileID: 6908219597676830020}
   life: 100
@@ -1297,7 +1297,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d194f863f70c83a409228088d23e9dc9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
