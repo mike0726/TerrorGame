@@ -26,7 +26,6 @@ public class GhostBoss : MonoBehaviour
         if (timeInstance > rateInstance)
         {
 
-            countEnemies++;
             timeInstance = 0.0f;
             EnemieCreator();
         }
@@ -36,7 +35,12 @@ public class GhostBoss : MonoBehaviour
 
     public void EnemieCreator()
     {
-        Instantiate(enemie, new Vector2(limitsX[Random.Range(0, 2)], Random.Range(-14, 3)), Quaternion.identity);
+        if(countEnemies<maxEnemies)
+        {
+            Instantiate(enemie, new Vector2(limitsX[Random.Range(0, 2)], Random.Range(-14, 3)), Quaternion.identity);
+            countEnemies++;
+        }
+        
     }
 
    

@@ -157,7 +157,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.28
+  m_Intensity: 0.05
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -1120,14 +1120,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 813403530, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 09688976bae8bac44afa16ba2e52e293, type: 2}
-    - target: {fileID: 813403530, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9113508317630575660, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
       propertyPath: m_Name
       value: Player Variant
@@ -1136,10 +1128,6 @@ PrefabInstance:
       propertyPath: bar
       value: 
       objectReference: {fileID: 1453813782}
-    - target: {fileID: 9113508317630575665, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: timeSpeed
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 9113508317630575666, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
       propertyPath: puerta
       value: 
@@ -1148,10 +1136,6 @@ PrefabInstance:
       propertyPath: teletransportacionDestino
       value: 
       objectReference: {fileID: 757692524}
-    - target: {fileID: 9113508317630575667, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9113508317630575667, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.296
@@ -1192,26 +1176,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9113508317630575669, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9113508317630575669, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9113508317630575671, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
       propertyPath: lifeBarImage
       value: 
       objectReference: {fileID: 603175370}
-    - target: {fileID: 9113508318061880824, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 9113508318061880824, guid: b20682ef76cea3b44b69588839496fe7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.32
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3477,7 +3445,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3650675, y: 1.1541984, z: -10}
+  m_LocalPosition: {x: 4.4878864, y: 1.1541984, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3573,8 +3541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22663bfdff7dd4846b0fa4f94fb9f9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemies: 5
-  rateInstance: 1
+  maxEnemies: 30
+  rateInstance: 2
   timeInstance: 0
   enemie: {fileID: 7815717144464809871, guid: 1445549f3a20e8a4ab507fc5d93fd158, type: 3}
   limitsX:

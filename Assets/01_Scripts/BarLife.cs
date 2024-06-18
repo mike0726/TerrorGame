@@ -32,8 +32,8 @@ public class BarLife : MonoBehaviour
          
             timer = 0.0f;
         }
-        Debug.Log("Life: " + life);
-        Debug.Log("Bateria Intensity: " + bateria.intensity);
+        //Debug.Log("Life: " + life);
+        //Debug.Log("Bateria Intensity: " + bateria.intensity);
 
     }
     public void ApagarBateria()
