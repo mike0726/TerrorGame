@@ -12,6 +12,7 @@ public class Enemy1 : MonoBehaviour
     public float playerDistance;
     public SpriteRenderer sprite;
     public float life=100f;
+    public Player player;
 
     void Start()
     {
@@ -59,6 +60,7 @@ public class Enemy1 : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            player.TakeDamage();
             //Destroy(this.gameObject);
         }
     }

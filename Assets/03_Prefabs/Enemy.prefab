@@ -1281,11 +1281,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   velocidad: 3
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: d194f863f70c83a409228088d23e9dc9, type: 3}
   minDistance: 2
-  playerDistance: {x: 0, y: 0}
+  playerDistance: 0
   sprite: {fileID: 6908219597676830020}
   life: 100
+  player: {fileID: 0}
 --- !u!82 &768938977896053719
 AudioSource:
   m_ObjectHideFlags: 0
