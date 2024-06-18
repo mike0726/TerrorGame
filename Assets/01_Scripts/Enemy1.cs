@@ -60,8 +60,8 @@ public class Enemy1 : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            player.TakeDamage();
-            //Destroy(this.gameObject);
+            collision.gameObject.GetComponent<Player>().lives -= 1;
+            Destroy(this.gameObject);
         }
     }
 }

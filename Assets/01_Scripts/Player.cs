@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     private float horizontal;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
     public float runTimer;
     public float cooldownTimer;
     private bool canRun = true;
-    private int lives = 10;
+    public int lives = 10;
     private int maxLives = 10; // Número máximo de vidas del jugador
     public Image lifeBarImage; // Referencia a la imagen de la barra de vida
     public Animator animator;
@@ -62,6 +63,14 @@ public class Player : MonoBehaviour
         HandleRunning();
 
         Flip();
+
+        UpdateLifeBar();
+        //Debug.Log("Vidas restantes: " + lives);
+
+        if (lives <= 0)
+        {
+            Die();
+        }
     }
 
     private void FixedUpdate()
@@ -99,7 +108,8 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Debug.Log("El jugador ha muerto.");
-        Destroy(gameObject);
+        SceneManager.LoadScene(1);
+        //Destroy(gameObject);
 
     }
     private void UpdateLifeBar()
